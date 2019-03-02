@@ -1,18 +1,14 @@
-#
-# This Makefile is provided purely as a convenience for running CMake
-#
+CFLAGS+=-Wall -Wextra -Wno-unused-parameter -O2
+CFLAGS+=$(shell pkg-config --cflags fdisk fuse)
+LDLIBS+=$(shell pkg-config --libs fdisk fuse)
 
-QUIET		:= @
+ALL=partfs
 
-all: build/Makefile
-	$(QUIET)cmake --build build
+all: $(ALL)
 
-%:: build/Makefile
-	$(QUIET)cmake --build build --target $(@)
+clean:
+	$(RM) $(ALL)
 
-build/Makefile:
-	$(QUIET)[ -d build ] || mkdir build
-	$(QUIET)cd build && cmake ..
+distclean: clean
 
-distclean:
-	$(QUIET)rm -rf build
+.PHONY: all clean distclean
