@@ -6,27 +6,26 @@ Run `make` at the top level.
 
 Your system will need to have:
 ```
-cmake
 libfdisk (libraries and development headers)
 libfuse (libraries and development headers)
 ```
 On a Debian/Ubuntu system:
 ```
-apt-get install cmake libfdisk1 libfdisk-dev libfuse2 libfuse-dev
+apt-get install libfdisk-dev libfuse-dev
 ```
 
 ## About
-partfs allows one to access partitions within a device or file.
-the main purpose of partfs is to allow the creation of disk
-images without superuser privileges. this can be useful for the
-enabling automatic partition discovery for containers or for
+`partfs` allows one to access partitions within a device or file.
+The main purpose of `partfs` is to allow the creation of disk
+images without superuser privileges. This can be useful for
+automatic partition discovery for containers or for
 building disk images for embedded software.
 
-the mounted directory presents the partitions as files, allowing
-mkfs.* to be used to create file systems on the partitions
+The mounted directory presents the partitions as files, allowing
+`mkfs.*` to be used to create file systems on the partitions.
 
-to create a disk image with a single bootable
-partition with an ext4 file system:
+To create a disk image with a single bootable
+partition with an `ext4` file system:
 
 ```
 $ dd if=/dev/zero of=disk.image bs=1M count=4
@@ -49,7 +48,7 @@ Writing superblocks and filesystem accounting information: done
 $ fusermount -u mntdir
 ```
 
-to verify that the partition and file
+To verify that the partition and file
 system were successfully created:
 
 ```
